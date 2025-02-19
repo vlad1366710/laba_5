@@ -9,7 +9,16 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * Класс для поиска уникальных символов в словах из файла.
+ */
 public class UniqueSymbolsFinder {
+    /**
+     * Находит уникальные символы, встречающиеся только в одном слове.
+     *
+     * @param file Файл для анализа.
+     * @throws FileNotFoundException Если файл не найден.
+     */
     public static void findUniqueSymbolsInWords(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
         Map<Character, Integer> charCount = new HashMap<>();
@@ -30,7 +39,6 @@ public class UniqueSymbolsFinder {
 
         scanner.close();
 
-
         Set<Character> uniqueChars = new HashSet<>();
 
         for (String word : words) {
@@ -38,7 +46,6 @@ public class UniqueSymbolsFinder {
             for (char c : word.toCharArray()) {
                 wordChars.add(c);
             }
-
 
             for (char c : wordChars) {
                 if (charCount.get(c) == 1) {
@@ -50,5 +57,4 @@ public class UniqueSymbolsFinder {
         System.out.println("Символы, встречающиеся в одном и только в одном слове:");
         System.out.println(uniqueChars);
     }
-
 }

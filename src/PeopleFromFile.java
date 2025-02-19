@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 public class PeopleFromFile {
 
     public static Map<Integer, List<String>> processPeopleFromFile(String filePath) throws IOException {
-
         Pattern pattern = Pattern.compile("([a-zA-Zа-яА-Я]+):(\\d+)");
 
         return Files.lines(Paths.get(filePath))
@@ -19,7 +18,7 @@ public class PeopleFromFile {
                 .filter(line -> !line.isEmpty())
                 .map(line -> {
                     Matcher matcher = pattern.matcher(line);
-                    if(matcher.find()) {
+                    if (matcher.find()) {
                         return new String[]{matcher.group(1), matcher.group(2)};
                     }
                     return null;
@@ -32,7 +31,6 @@ public class PeopleFromFile {
                     return new String[]{capitalizeFirstLetter(name), String.valueOf(number)};
                 })
                 .collect(Collectors.groupingBy(parts -> Integer.parseInt(parts[1]), Collectors.mapping(parts -> parts[0], Collectors.toList())));
-
     }
 
     private static String capitalizeFirstLetter(String name) {

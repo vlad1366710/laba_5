@@ -2,17 +2,30 @@ package MultiSportCompetition;
 
 import java.util.*;
 
+/**
+ * Класс для обработки результатов многоборья.
+ */
 public class MultiSportCompetition {
     private final int n;
     private final int m;
     private final Scanner scanner;
 
+    /**
+     * Создает объект для обработки результатов.
+     *
+     * @param n       Количество участников.
+     * @param m       Количество видов спорта.
+     * @param scanner Сканер для чтения данных.
+     */
     public MultiSportCompetition(int n, int m, Scanner scanner) {
         this.n = n;
         this.m = m;
         this.scanner = scanner;
     }
 
+    /**
+     * Обрабатывает результаты и выводит их.
+     */
     public void processResults() {
         Map<String, Integer> athletes = new TreeMap<>();
         Map<String, Integer> places = new HashMap<>();
@@ -31,11 +44,9 @@ public class MultiSportCompetition {
             athletes.put(fullName, totalScore);
         }
 
-
         List<Map.Entry<String, Integer>> sortedAthletes = new ArrayList<>(athletes.entrySet());
         Comparator<Map.Entry<String, Integer>> comparator = Comparator.comparing(Map.Entry::getValue);
         Collections.sort(sortedAthletes, comparator.reversed());
-
 
         int place = 1;
         int previousTotal = -1;
@@ -48,7 +59,6 @@ public class MultiSportCompetition {
             }
             place++;
         }
-
 
         for (Map.Entry<String, Integer> entry : sortedAthletes) {
             String athlete = entry.getKey();
